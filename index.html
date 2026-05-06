@@ -23,7 +23,6 @@
         #gmt-clock { font-size: 2.8em; font-weight: 800; color: white; line-height: 1; }
         .update-tag { font-size: 0.65em; color: #8b949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; display: block; }
         
-        /* Time Info & Format Toggle */
         .time-settings { margin-top: 10px; font-size: 0.85em; }
         #local-zone-info { color: var(--green); margin-bottom: 5px; font-weight: 500; }
         .small-toggle { 
@@ -38,7 +37,6 @@
         }
         .legend-tag { color: var(--blue); font-weight: bold; }
 
-        /* Main View Filters */
         .filters { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; justify-content: center; }
         .filter-btn { 
             padding: 8px 12px; border: 1px solid #30363d; border-radius: 6px; 
@@ -46,7 +44,6 @@
         }
         .filter-btn.active { background: #1f6feb; border-color: #388bfd; }
         
-        /* Time View Switcher */
         .view-switcher { margin-bottom: 15px; text-align: center; }
         .view-btn { 
             width: 140px; padding: 10px; border: 2px solid #30363d; 
@@ -114,7 +111,7 @@
         </thead>
         <tbody id="rosterBody">
             <tr class="member-row" data-group="1"><td>AnimaExodus <span class="rank">(PR)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Group 1 Bridge / Slot 3 Flex)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Group 1 Bridge / Group 3 Flex)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
             <tr class="member-row" data-group="1"><td>Deepsea <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
             <tr class="member-row" data-group="1"><td>FreestyleBlade <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
             <tr class="member-row" data-group="1"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(Group 1 Early / Group 3 Flex)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
@@ -130,11 +127,11 @@
             <tr class="member-row" data-group="2"><td>Ms. zombifyre <span class="rank">(PR)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
             <tr class="member-row" data-group="2"><td>SQUALLZK6 <span class="rank">(CO)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
 
-            <tr class="member-row" data-group="3"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Group 3 Alternate)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3" data-duplicate="true"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Flex Entry)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>Ducage <span class="rank">(BK)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>Gozzaiz <span class="rank">(CO)</span><span class="status-pending">(Semi-inactive - Group 3?)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>GreenArcher17 <span class="rank">(PR)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(Group 3 Alternate)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3" data-duplicate="true"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(Flex Entry)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>joscuefer <span class="rank">(CO)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>MayDay</td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>samuelbyrock <span class="rank">(CO)</span><span class="status-pending">(Group 3?)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
@@ -154,7 +151,7 @@
 
 <script>
     let use24Hour = true;
-    let currentView = 'server'; // 'server' or 'local'
+    let currentView = 'server';
 
     function updateClock() {
         const now = new Date();
@@ -180,23 +177,16 @@
 
     function renderTimes() {
         const cells = document.querySelectorAll('.time-display');
-        const offset = -new Date().getTimezoneOffset() / 60;
-        const sign = offset >= 0 ? "+" : "";
-        document.getElementById('local-zone-info').innerText = `Local Zone: GMT${sign}${offset}`;
-
         cells.forEach(cell => {
             const start = cell.getAttribute('data-start');
             const end = cell.getAttribute('data-end');
             if (!start) return;
-
             const options = { hour: '2-digit', minute: '2-digit', hour12: !use24Hour };
-            
             if (currentView === 'server') {
                 const sStart = new Date(); sStart.setUTCHours(start, 0, 0, 0);
                 const sEnd = new Date(); sEnd.setUTCHours(end, 0, 0, 0);
-                const sOptions = { ...options, timeZone: 'UTC' };
                 cell.className = "time-display time-server";
-                cell.innerText = `${sStart.toLocaleTimeString('en-GB', sOptions)} - ${sEnd.toLocaleTimeString('en-GB', sOptions)}`;
+                cell.innerText = `${sStart.toLocaleTimeString('en-GB', {...options, timeZone: 'UTC'})} - ${sEnd.toLocaleTimeString('en-GB', {...options, timeZone: 'UTC'})}`;
             } else {
                 const lStart = new Date(); lStart.setUTCHours(start, 0, 0, 0);
                 const lEnd = new Date(); lEnd.setUTCHours(end, 0, 0, 0);
@@ -211,7 +201,16 @@
         btn.classList.add('active');
         const rows = document.querySelectorAll('.member-row');
         rows.forEach(row => {
-            row.style.display = (group === 'all' || row.getAttribute('data-group') === group) ? '' : 'none';
+            const isDup = row.getAttribute('data-duplicate') === 'true';
+            const rowGroup = row.getAttribute('data-group');
+            
+            if (group === 'all') {
+                // Hide duplicates in 'All' view to keep headcount at 30
+                row.style.display = isDup ? 'none' : '';
+            } else {
+                // Show matching group even if it is a duplicate row
+                row.style.display = (rowGroup === group) ? '' : 'none';
+            }
         });
     }
 
