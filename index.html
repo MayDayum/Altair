@@ -15,52 +15,62 @@
             background: var(--primary); color: var(--text); margin: 0; padding: 10px; 
         }
         .container { 
-            max-width: 1000px; margin: auto; background: #161b22; 
-            padding: 20px; border-radius: 12px; border: 1px solid #30363d; 
+            max-width: 800px; margin: auto; background: #161b22; 
+            padding: 15px; border-radius: 12px; border: 1px solid #30363d; 
             box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
         }
-        .header { text-align: center; margin-bottom: 15px; border-bottom: 1px solid #30363d; padding-bottom: 15px; }
-        #gmt-clock { font-size: 3em; font-weight: 800; color: white; line-height: 1; }
-        .update-tag { font-size: 0.7em; color: #8b949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; display: block; }
-        #local-zone-info { color: var(--green); font-size: 0.85em; margin-top: 8px; font-weight: 500; }
+        .header { text-align: center; margin-bottom: 10px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        #gmt-clock { font-size: 2.8em; font-weight: 800; color: white; line-height: 1; }
+        .update-tag { font-size: 0.65em; color: #8b949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; display: block; }
         
+        /* Time Info & Format Toggle */
+        .time-settings { margin-top: 10px; font-size: 0.85em; }
+        #local-zone-info { color: var(--green); margin-bottom: 5px; font-weight: 500; }
+        .small-toggle { 
+            background: none; border: 1px solid #30363d; color: var(--warning); 
+            font-size: 0.8em; padding: 3px 8px; border-radius: 4px; cursor: pointer;
+        }
+
         .rank-legend { 
-            font-size: 0.75em; color: #8b949e; margin: 10px 0; 
-            background: #21262d; padding: 6px 12px; border-radius: 6px; 
+            font-size: 0.7em; color: #8b949e; margin: 10px 0; 
+            background: #21262d; padding: 5px 10px; border-radius: 6px; 
             display: inline-block; border: 1px solid #30363d;
         }
-        .legend-item { margin: 0 5px; white-space: nowrap; }
         .legend-tag { color: var(--blue); font-weight: bold; }
 
-        .filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+        /* Main View Filters */
+        .filters { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; justify-content: center; }
         .filter-btn { 
-            padding: 8px 14px; border: 1px solid #30363d; border-radius: 8px; 
-            cursor: pointer; background: var(--accent); color: white; font-weight: 600; transition: 0.2s; font-size: 0.85em;
+            padding: 8px 12px; border: 1px solid #30363d; border-radius: 6px; 
+            cursor: pointer; background: var(--accent); color: white; font-weight: 600; font-size: 0.8em;
         }
         .filter-btn.active { background: #1f6feb; border-color: #388bfd; }
         
-        /* Toggle specific style */
-        .toggle-btn { background: #30363d; color: var(--warning); border-color: var(--warning); }
+        /* Time View Switcher */
+        .view-switcher { margin-bottom: 15px; text-align: center; }
+        .view-btn { 
+            width: 140px; padding: 10px; border: 2px solid #30363d; 
+            background: #0d1117; color: var(--text); font-weight: bold; cursor: pointer;
+        }
+        .view-btn.active { border-color: var(--blue); color: var(--blue); background: #1f6feb11; }
+        .view-btn.local-active.active { border-color: var(--green); color: var(--green); background: #7ee78711; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-        th { background: #0d1117; color: #8b949e; text-align: left; padding: 10px 8px; font-size: 0.7em; text-transform: uppercase; }
-        td { padding: 10px 8px; border-bottom: 1px solid #21262d; font-size: 0.9em; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #0d1117; color: #8b949e; text-align: left; padding: 10px; font-size: 0.7em; text-transform: uppercase; }
+        td { padding: 10px; border-bottom: 1px solid #21262d; font-size: 0.9em; }
         
-        .rank { color: var(--blue); font-size: 0.75em; margin-left: 3px; font-weight: bold; }
-        .server-time { color: var(--blue); font-weight: 500; white-space: nowrap; }
-        .local-time { color: var(--green); font-weight: bold; white-space: nowrap; }
+        .rank { color: var(--blue); font-size: 0.75em; font-weight: bold; }
+        .time-display { font-weight: bold; white-space: nowrap; }
+        .time-server { color: var(--blue); }
+        .time-local { color: var(--green); }
         
-        .status-pending { color: #8b949e; font-style: italic; opacity: 0.8; font-size: 0.8em; display: block; margin-top: 2px; }
+        .status-pending { color: #8b949e; font-style: italic; opacity: 0.8; font-size: 0.8em; display: block; }
         .status-inactive { color: var(--danger); text-decoration: line-through; opacity: 0.5; }
 
         @media (max-width: 600px) {
-            body { padding: 5px; }
-            .container { padding: 12px; border-radius: 8px; }
             #gmt-clock { font-size: 2.2em; }
-            h1 { font-size: 1.1em; margin: 8px 0; }
-            td, th { padding: 8px 4px; font-size: 0.78em; }
-            .filter-btn { padding: 6px 10px; font-size: 0.72em; }
-            .rank-legend { font-size: 0.62em; padding: 4px 8px; }
+            h1 { font-size: 1.1em; }
+            td, th { padding: 8px 5px; font-size: 0.85em; }
         }
     </style>
 </head>
@@ -68,17 +78,18 @@
 
 <div class="container">
     <div class="header">
-        <span class="update-tag">Last Updated: May 7th, 2026</span>
+        <span class="update-tag">Updated: May 7th, 2026</span>
         <div id="gmt-clock">00:00:00 GMT</div>
-        <h1>⚔️ Bad Chads - War Room ⚔️</h1>
+        <h1>⚔️ Bad Chads - War Room</h1>
         
         <div class="rank-legend">
-            <span class="legend-item"><span class="legend-tag">BK:</span> Bad King</span> | 
-            <span class="legend-item"><span class="legend-tag">PR:</span> Bad Prince</span> | 
-            <span class="legend-item"><span class="legend-tag">CO:</span> Bad Commander</span>
+            <span class="legend-tag">BK:</span> King | <span class="legend-tag">PR:</span> Prince | <span class="legend-tag">CO:</span> Cmdr
         </div>
 
-        <div id="local-zone-info">Detecting your timezone...</div>
+        <div class="time-settings">
+            <div id="local-zone-info">Timezone detected...</div>
+            <button class="small-toggle" onclick="toggle1224()">Format: 24H</button>
+        </div>
     </div>
 
     <div class="filters">
@@ -87,104 +98,112 @@
         <button class="filter-btn" onclick="filterGroup('2', this)">Group 2</button>
         <button class="filter-btn" onclick="filterGroup('3', this)">Group 3</button>
         <button class="filter-btn" onclick="filterGroup('pending', this)">Pending</button>
-        <button class="filter-btn toggle-btn" id="formatToggle" onclick="toggleFormat()">Switch to 12H</button>
+    </div>
+
+    <div class="view-switcher">
+        <button id="btn-server" class="view-btn active" onclick="setView('server')">SERVER TIME</button>
+        <button id="btn-local" class="view-btn" onclick="setView('local')">LOCAL TIME</button>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th>Member (Rank)</th>
-                <th>Server Time</th>
-                <th>Local Time</th>
+                <th>Member</th>
+                <th id="time-header">Server Time (GMT)</th>
             </tr>
         </thead>
         <tbody id="rosterBody">
-            <tr class="member-row" data-group="1"><td>AnimaExodus <span class="rank">(PR)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(if bridge is open fast, Group 3 otherwise)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>Deepsea <span class="rank">(CO)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>FreestyleBlade <span class="rank">(CO)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(first hour, or Group 3)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>macpac3000 <span class="rank">(CO)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>Montserrat <span class="rank">(CO)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>todotom <span class="rank">(PR)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>>>toucansam</td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>wojtek <span class="status-pending">(GMT+1 - Group 1?)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
-            <tr class="member-row" data-group="1"><td>YALDABAOFF <span class="rank">(CO)</span></td><td class="server-time" data-start="7" data-end="11"></td><td class="local-time" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>AnimaExodus <span class="rank">(PR)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Group 1 Bridge / Slot 3 Flex)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>Deepsea <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>FreestyleBlade <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(Group 1 Early / Group 3 Flex)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>macpac3000 <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>Montserrat <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>todotom <span class="rank">(PR)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>>>toucansam</td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>wojtek <span class="status-pending">(GMT+1 - Group 1?)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
+            <tr class="member-row" data-group="1"><td>YALDABAOFF <span class="rank">(CO)</span></td><td class="time-display" data-start="7" data-end="11"></td></tr>
 
-            <tr class="member-row" data-group="2"><td>Aerodeous <span class="rank">(PR)</span></td><td class="server-time" data-start="11" data-end="15"></td><td class="local-time" data-start="11" data-end="15"></td></tr>
-            <tr class="member-row" data-group="2"><td>Gull <span class="rank">(PR)</span></td><td class="server-time" data-start="11" data-end="15"></td><td class="local-time" data-start="11" data-end="15"></td></tr>
-            <tr class="member-row" data-group="2"><td>Ms. zombifyre <span class="rank">(PR)</span></td><td class="server-time" data-start="11" data-end="15"></td><td class="local-time" data-start="11" data-end="15"></td></tr>
-            <tr class="member-row" data-group="2"><td>SQUALLZK6 <span class="rank">(CO)</span></td><td class="server-time" data-start="11" data-end="15"></td><td class="local-time" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>Aerodeous <span class="rank">(PR)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>Gull <span class="rank">(PR)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>Ms. zombifyre <span class="rank">(PR)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>SQUALLZK6 <span class="rank">(CO)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
 
-            <tr class="member-row" data-group="3"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(if bridge is open fast, Group 3 otherwise)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>Ducage <span class="rank">(BK)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>Gozzaiz <span class="rank">(CO)</span><span class="status-pending">(semi-inactive - Group 3?)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>GreenArcher17 <span class="rank">(PR)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(first hour, or Group 3)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>joscuefer <span class="rank">(CO)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>MayDay</td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>samuelbyrock <span class="rank">(CO)</span><span class="status-pending">(Group 3?)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>simasp <span class="rank">(CO)</span></td><td class="server-time" data-start="15" data-end="20"></td><td class="local-time" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>David2804 <span class="rank">(CO)</span><span class="status-pending">(Group 3 Alternate)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>Ducage <span class="rank">(BK)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>Gozzaiz <span class="rank">(CO)</span><span class="status-pending">(Semi-inactive - Group 3?)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>GreenArcher17 <span class="rank">(PR)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>HanibalCanibal9 <span class="rank">(PR)</span><span class="status-pending">(Group 3 Alternate)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>joscuefer <span class="rank">(CO)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>MayDay</td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>samuelbyrock <span class="rank">(CO)</span><span class="status-pending">(Group 3?)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
+            <tr class="member-row" data-group="3"><td>simasp <span class="rank">(CO)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
 
-            <tr class="member-row" data-group="pending"><td>BlackPanda9787 <span class="status-pending">(Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>Djaysonking <span class="status-pending">(Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>Homerorubio511 <span class="status-pending">(GMT-6 - Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>Leviyeti <span class="status-pending">(Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>mikalor <span class="status-pending">(GMT+2 - Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>プレイイヤー <span class="status-pending">(Asked)</span></td><td>--</td><td>TBD</td></tr>
-            <tr class="member-row" data-group="pending"><td>Espana <span class="status-inactive">(Inactive)</span></td><td>--</td><td>--</td></tr>
-            <tr class="member-row" data-group="pending"><td>TDO <span class="rank">(PR)</span><span class="status-inactive">(Inactive)</span></td><td>--</td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>BlackPanda9787 <span class="status-pending">(Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>Djaysonking <span class="status-pending">(Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>Homerorubio511 <span class="status-pending">(GMT-6 Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>Leviyeti <span class="status-pending">(Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>mikalor <span class="status-pending">(GMT+2 Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>プレイイヤー <span class="status-pending">(Asked)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>Espana <span class="status-inactive">(Inactive)</span></td><td>--</td></tr>
+            <tr class="member-row" data-group="pending"><td>TDO <span class="rank">(PR)</span><span class="status-inactive">(Inactive)</span></td><td>--</td></tr>
         </tbody>
     </table>
 </div>
 
 <script>
     let use24Hour = true;
+    let currentView = 'server'; // 'server' or 'local'
 
     function updateClock() {
         const now = new Date();
-        const options = { 
-            hour: '2-digit', minute: '2-digit', second: '2-digit', 
-            hour12: !use24Hour, timeZone: 'UTC' 
-        };
+        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !use24Hour, timeZone: 'UTC' };
         document.getElementById('gmt-clock').innerText = now.toLocaleTimeString('en-GB', options).toUpperCase() + ' GMT';
     }
 
-    function convertTimes() {
-        const rows = document.querySelectorAll('.member-row');
-        const offset = -new Date().getTimezoneOffset() / 60;
-        const sign = offset >= 0 ? "+" : "";
-        document.getElementById('local-zone-info').innerText = `Your Local Zone: GMT${sign}${offset}`;
-
-        const options = { hour: '2-digit', minute: '2-digit', hour12: !use24Hour };
-
-        rows.forEach(row => {
-            const localCell = row.querySelector('.local-time');
-            const serverCell = row.querySelector('.server-time');
-            
-            if (localCell && localCell.getAttribute('data-start')) {
-                const startHour = localCell.getAttribute('data-start');
-                const endHour = localCell.getAttribute('data-end');
-
-                // Local Time Math
-                const lStart = new Date(); lStart.setUTCHours(startHour, 0, 0, 0);
-                const lEnd = new Date(); lEnd.setUTCHours(endHour, 0, 0, 0);
-                localCell.innerText = `${lStart.toLocaleTimeString([], options)} - ${lEnd.toLocaleTimeString([], options)}`;
-
-                // Server Time Math (Fixed to GMT/UTC)
-                const sStart = new Date(); sStart.setUTCHours(startHour, 0, 0, 0);
-                const sEnd = new Date(); sEnd.setUTCHours(endHour, 0, 0, 0);
-                const serverOptions = { hour: '2-digit', minute: '2-digit', hour12: !use24Hour, timeZone: 'UTC' };
-                serverCell.innerText = `${sStart.toLocaleTimeString('en-GB', serverOptions)} - ${sEnd.toLocaleTimeString('en-GB', serverOptions)}`;
-            }
-        });
+    function setView(view) {
+        currentView = view;
+        document.getElementById('btn-server').classList.toggle('active', view === 'server');
+        document.getElementById('btn-local').classList.toggle('active', view === 'local');
+        document.getElementById('btn-local').classList.toggle('local-active', view === 'local');
+        document.getElementById('time-header').innerText = view === 'server' ? 'Server Time (GMT)' : 'Your Local Time';
+        renderTimes();
     }
 
-    function toggleFormat() {
+    function toggle1224() {
         use24Hour = !use24Hour;
-        document.getElementById('formatToggle').innerText = use24Hour ? "Switch to 12H" : "Switch to 24H";
+        event.target.innerText = use24Hour ? "Format: 24H" : "Format: 12H";
         updateClock();
-        convertTimes();
+        renderTimes();
+    }
+
+    function renderTimes() {
+        const cells = document.querySelectorAll('.time-display');
+        const offset = -new Date().getTimezoneOffset() / 60;
+        const sign = offset >= 0 ? "+" : "";
+        document.getElementById('local-zone-info').innerText = `Local Zone: GMT${sign}${offset}`;
+
+        cells.forEach(cell => {
+            const start = cell.getAttribute('data-start');
+            const end = cell.getAttribute('data-end');
+            if (!start) return;
+
+            const options = { hour: '2-digit', minute: '2-digit', hour12: !use24Hour };
+            
+            if (currentView === 'server') {
+                const sStart = new Date(); sStart.setUTCHours(start, 0, 0, 0);
+                const sEnd = new Date(); sEnd.setUTCHours(end, 0, 0, 0);
+                const sOptions = { ...options, timeZone: 'UTC' };
+                cell.className = "time-display time-server";
+                cell.innerText = `${sStart.toLocaleTimeString('en-GB', sOptions)} - ${sEnd.toLocaleTimeString('en-GB', sOptions)}`;
+            } else {
+                const lStart = new Date(); lStart.setUTCHours(start, 0, 0, 0);
+                const lEnd = new Date(); lEnd.setUTCHours(end, 0, 0, 0);
+                cell.className = "time-display time-local";
+                cell.innerText = `${lStart.toLocaleTimeString([], options)} - ${lEnd.toLocaleTimeString([], options)}`;
+            }
+        });
     }
 
     function filterGroup(group, btn) {
@@ -192,18 +211,15 @@
         btn.classList.add('active');
         const rows = document.querySelectorAll('.member-row');
         rows.forEach(row => {
-            if (group === 'all' || row.getAttribute('data-group') === group) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = (group === 'all' || row.getAttribute('data-group') === group) ? '' : 'none';
         });
     }
 
     setInterval(updateClock, 1000);
     updateClock();
-    convertTimes();
+    renderTimes();
 </script>
 
 </body>
 </html>
+ 
