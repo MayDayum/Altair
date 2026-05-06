@@ -22,27 +22,22 @@
         .header { text-align: center; margin-bottom: 10px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
         
         /* Server Clock Styling */
-        .server-time-wrapper { margin-bottom: 10px; }
-        .server-label { color: var(--blue); font-weight: 800; font-size: 0.8em; letter-spacing: 2px; display: block; margin-bottom: 2px; }
-        #gmt-clock { font-size: 2.8em; font-weight: 800; color: white; line-height: 1; }
+        .server-label { color: var(--blue); font-weight: 800; font-size: 0.75em; letter-spacing: 2px; display: block; margin-bottom: 2px; }
+        #gmt-clock { font-size: 2.8em; font-weight: 800; color: white; line-height: 1; margin-bottom: 10px; }
         
         .update-tag { font-size: 0.65em; color: #8b949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
         
-        /* Time Settings & Foolproof Toggle */
-        .time-settings { 
-            margin: 15px 0; padding: 12px; background: #0d1117; 
-            border-radius: 8px; border: 1px solid #30363d; 
-        }
-        .local-label { color: var(--green); font-weight: bold; font-size: 0.8em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-        #local-clock-display { color: white; font-size: 1.1em; font-weight: bold; margin-bottom: 10px; display: block; }
+        /* Local Time Section (Back to Clean Style) */
+        .local-info-section { margin: 15px 0; }
+        .local-label { color: var(--green); font-weight: bold; font-size: 0.85em; display: block; margin-bottom: 2px; }
+        #local-clock-display { color: white; font-size: 1.1em; font-weight: 600; display: block; margin-bottom: 5px; }
         
-        .big-toggle-btn { 
-            background: var(--warning); color: black; border: none; 
-            font-size: 0.75em; padding: 8px 16px; border-radius: 4px; 
-            cursor: pointer; font-weight: 800; text-transform: uppercase;
-            box-shadow: 0 3px 0 #9b6d10; transition: 0.1s;
+        .small-toggle { 
+            background: none; border: 1px solid #30363d; color: var(--warning); 
+            font-size: 0.75em; padding: 3px 10px; border-radius: 4px; cursor: pointer;
+            transition: 0.2s;
         }
-        .big-toggle-btn:active { transform: translateY(2px); box-shadow: none; }
+        .small-toggle:hover { background: #30363d; }
 
         .rank-legend { 
             font-size: 0.7em; color: #8b949e; margin-bottom: 15px;
@@ -86,7 +81,7 @@
 
         @media (max-width: 600px) {
             #gmt-clock { font-size: 2.2em; }
-            h1 { font-size: 1.2em; margin-bottom: 15px; }
+            h1 { font-size: 1.2em; margin-bottom: 10px; }
             td { padding: 8px 5px; font-size: 0.82em; }
         }
     </style>
@@ -98,7 +93,7 @@
         <span class="update-tag">Last Updated: May 7th, 2026</span>
         
         <div class="server-time-wrapper">
-            <span class="server-label">CURRENT SERVER TIME</span>
+            <span class="server-label">SERVER TIME</span>
             <div id="gmt-clock">00:00:00 GMT</div>
         </div>
 
@@ -108,10 +103,10 @@
             <span class="legend-tag">BK:</span> King | <span class="legend-tag">PR:</span> Prince | <span class="legend-tag">CO:</span> Cmdr
         </div>
 
-        <div class="time-settings">
-            <span class="local-label">Your Local Device Time:</span>
-            <span id="local-clock-display">Loading...</span>
-            <button class="big-toggle-btn" onclick="toggle1224()">👆 Tap to Change format (12H / 24H)</button>
+        <div class="local-info-section">
+            <span class="local-label">Your Local Time:</span>
+            <span id="local-clock-display">Loading Local Time...</span>
+            <button class="small-toggle" onclick="toggle1224()">Switch Format (12/24H)</button>
         </div>
     </div>
 
@@ -180,10 +175,10 @@
         const now = new Date();
         const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !use24Hour };
         
-        // Update GMT/Server Clock
+        // GMT Server Clock
         document.getElementById('gmt-clock').innerText = now.toLocaleTimeString('en-GB', {...options, timeZone: 'UTC'}).toUpperCase() + ' GMT';
         
-        // Update Local Clock + Timezone
+        // Local Clock
         const offset = -now.getTimezoneOffset() / 60;
         const sign = offset >= 0 ? "+" : "";
         document.getElementById('local-clock-display').innerText = now.toLocaleTimeString([], options) + ` (GMT${sign}${offset})`;
@@ -248,3 +243,4 @@
 
 </body>
 </html>
+ 
