@@ -114,7 +114,7 @@
 
     <div class="rank-legend-container">
         <div class="rank-legend">
-            <span class="legend-tag">GM:</span> Guild Master | <span class="legend-tag">G:</span> General | <span class="legend-tag">O:</span> Officer | <span class="legend-tag">M:</span> Member
+            <span class="legend-tag">GM:</span> Guild Mistress | <span class="legend-tag">G:</span> General | <span class="legend-tag">O:</span> Officer | <span class="legend-tag">M:</span> Member
         </div>
     </div>
 
@@ -145,11 +145,12 @@
 
             <!-- Group 2 -->
             <tr class="member-row" data-group="2"><td>Banyodaki Neşel <span class="rank">(M)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>MayDay <span class="rank">(GM)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
             <tr class="member-row" data-group="2"><td>Nono​♡​♡​♡ <span class="rank">(M)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
             <tr class="member-row" data-group="2"><td>プレイイヤー / "Pureiyā" <span class="rank">(M)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
             <tr class="member-row" data-group="2"><td>SQUALLZK6 <span class="rank">(O)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
             <tr class="member-row" data-group="2"><td>Suspicious <span class="rank">(G)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
-            <tr class="member-row" data-group="2"><td>**vyper** <span class="rank">(G)</span><span class="status-pending">(can attack earlier if needed)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
+            <tr class="member-row" data-group="2"><td>****\*\*vyper\*\***** <span class="rank">(G)</span><span class="status-pending">(can attack earlier if needed)</span></td><td class="time-display" data-start="11" data-end="15"></td></tr>
 
             <!-- Group 3 -->
             <tr class="member-row" data-group="3"><td>Angelwings From <span class="rank">(M)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
@@ -160,7 +161,6 @@
             <tr class="member-row" data-group="3"><td>Homerorubio511 <span class="rank">(M)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>joscuefer <span class="rank">(O)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>Lupita <span class="rank">(M)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
-            <tr class="member-row" data-group="3"><td>MayDay <span class="rank">(GM)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3" data-duplicate="true"><td>минск / "Minsk" <span class="rank">(O)</span><span class="status-pending">(or any group)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>Ronin <span class="rank">(O)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
             <tr class="member-row" data-group="3"><td>simasp <span class="rank">(M)</span></td><td class="time-display" data-start="15" data-end="20"></td></tr>
@@ -176,7 +176,6 @@
     let use24Hour = true;
     let currentView = 'server';
 
-    // Live update function for clocks
     function updateClocks() {
         const now = new Date();
         const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !use24Hour };
@@ -186,7 +185,6 @@
         document.getElementById('local-clock-display').innerText = now.toLocaleTimeString([], options) + ` (GMT${sign}${offset})`;
     }
 
-    // Toggle logic between Server/Local views
     function setView(view) {
         currentView = view;
         document.getElementById('s-server').classList.toggle('active-server', view === 'server');
@@ -194,14 +192,12 @@
         renderTimes();
     }
 
-    // 12/24H format configuration
     function toggle1224() {
         use24Hour = !use24Hour;
         updateClocks();
         renderTimes();
     }
 
-    // Calculate slots mapping
     function renderTimes() {
         const cells = document.querySelectorAll('.time-display');
         const options = { hour: '2-digit', minute: '2-digit', hour12: !use24Hour };
@@ -223,7 +219,6 @@
         });
     }
 
-    // Tab filtering execution
     function filterGroup(group, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
